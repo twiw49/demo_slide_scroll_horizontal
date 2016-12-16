@@ -1,0 +1,96 @@
+<html>
+<head>
+	<title></title>
+	<meta name="viewport" content="width=device-width initial.scale=1.0">
+	<style>
+		* {
+			/*outline: 1px solid;*/
+		}
+
+		body {
+			margin: 0;
+		}
+
+		a {
+			text-decoration: none;
+			text-transform: uppercase;
+			color: #fff;
+			font-size: 1rem;
+			font-weight: bold;
+		}
+
+		header {
+			position: fixed;
+			z-index: 1;
+			top: 0;
+			width: 100%;
+			height: 3rem;
+			border-bottom: 2px solid #fff;
+			background-color: rgba(150, 150, 150, 0.5);
+		}
+
+		nav ul {
+			margin: 0;
+			padding: 0;
+		}
+
+		nav ul li {
+			display: inline;
+			list-style: none;
+			line-height: 3rem;
+			margin: 0 2rem;
+		}
+
+		.slide {
+			position: absolute;
+			width: 100vw;
+			height: 100vh;
+		}
+
+		#s1 {
+			background-color: green;
+		}
+
+		#s2 {
+			background-color: skyblue;
+		}
+
+		#s3 {
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+<header>
+	<nav>
+		<ul>
+			<li><a href="#s1">slide1</li>
+			<li><a href="#s2">slide2</li>
+			<li><a href="#s3">slide3</li>
+		</ul>
+	</nav>
+</header>	
+<div class="slide" id="s1"></div>
+<div class="slide" id="s2"></div>
+<div class="slide" id="s3"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+	var $slides = $(".slide");
+	var slideCount = $slides.length;
+
+	for (var i = 0; i < slideCount; i++) {
+        var $slide = $($slides[i]);
+        var slideWidth = $slide.width();
+        $slide.css("left", slideWidth * i + "px");
+    }
+
+	$('a').on('click', function(event) {
+		event.preventDefault();
+		var $anchor = $(this);
+		$('body').animate({
+			scrollLeft: $($anchor.attr('href')).offset().left
+		}, 1500);
+	});
+</script>
+</body>
+</html>
